@@ -1,0 +1,219 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./style.css" rel="stylesheet" type="text/css">
+    <title>Программирование на Паскале</title>
+</head>
+<body>
+    <header>
+        <a href="./">Главная страница</a>
+        <a href="http://pascalabc.net/">Скачать и установить Паскаль</a>
+        
+    </header>
+    <div class="wrapper">
+        <div class="content">
+            <h2 class="main_header">Программирование ветвлений</h2>
+            <div class="content_header_small">
+                <span>Pascal</span>
+            </div>
+            <p>Алгоритмическая структура ветвления программируется в Паскале с помощью условного оператора <b>If</b>.</p>
+            <p>Полное ветвление:</p>
+            <div class="snippet-code">
+                <p><b>If</b> <логическое выражение></p>
+                <p><b>Then</b> <оператор 1></p>
+                <p><b>Else</b> <оператор 2></p>
+            </div>
+            <p>Неполное ветвление:</p>
+            <div class="snippet-code">
+                <p><b>If</b> <логическое выражение></p>
+                <p><b>Then</b> <оператор></p>
+            </div>
+            <p>То, что в алгоритмах называется условием, в Паскале является логическим выражением, которое вычисляется в первую очередь. Если его значение равно true, то будет выполняться <оператор 1> (после Then), если &ndash; false, то <оператор 2> (после Else) для полной формы или оператор, сразу следующий после условного, для неполной формы (без Else). На ветвях может быть как простой оператор, так и составной &ndash; серия операторов в операторных скобках Begin, End.</p>
+            <p>Пример 1. По длинам трех сторон треугольника a, b, c требуется вычислить его площадь.</p>
+            <p>Для решения задачи используется формула Герона:</p>
+            <div class="snippet-code">
+                <p>
+                    &nbsp;______________________<br>   
+                    <b>&radic;</b><i>p(p - a)(p - b)(p - c)</i>
+                </p>
+            </div>
+            <p>Где <i>р = (а + b + с)/2</i> &mdash; полупериметр треугольника. Исходные данные должны удовлетворять основному соотношению для сторон треугольника &mdash; длина каждой стороны должна быть меньше суммы длин двух других сторон, и длины сторон не могут быть отрицательными величинами.</p>
+            <p>Имея возможность в одном условном операторе записывать достаточно сложные логические выражения, используя логические операции, мы можем сразу «отфильтровать» все варианты неверных исходных данных.</p>
+            <div class="snippet-code">
+                <p><b>Program</b> Geron;<br>
+                   <b>Var</b> a, b, c, d, P, S : Real;<br>
+                   <b>Begin</b><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Writeln('Введите длины сторон треугольника: ');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Write('a = ');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Readln(a);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Write('b = ');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Readln(b);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Write('c = ');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Readln(c);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b>If</b> (a > 0) <b>and</b> (b > 0) <b>and</b> (c > 0) <b>and</b> (a + b > c) <b>and</b> (b + c > a) <b>and</b> (a + c > b)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b>Then Begin</b><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P:= (a + b + c)/2;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S:= <i>Sqrt</i>(P * (P - a) * (P - b) * (P - c));<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln('Площадь = ', S);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b>End;</b><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b>Else</b> Writeln('Неверные исходные данные');<br>
+                    <b>End</b>.
+                </p>
+            </div>
+
+            <p>Пример 2. Требуется перевести пятибалльную оценку в ее наименование: 5 &ndash; «отлично», 4 &ndash; «хорошо», 3 &ndash; «удовлетворительно», 2 &ndash; «неудовлетворительно».</p>
+            <p>Блок-схема алгоритма:</p>
+            <img src="./pictures/3.17.jpeg">
+            <p>Этот алгоритм имеет структуру вложенных ветвлений и может быть запрограммирован с использованием условного оператора <i>If</i> следующим образом:</p>
+            <div class="snippet-code">
+                <p><b>Program</b> Marks_1;<br>
+                    <b>Var</b> n: Integer;<br>
+                    <b>Begin</b><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Writeln('Введите оценку: ');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Readln(n);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b>If</b> n = 5<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b>Then</b> Witeln('Отлично')<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b>Else If</b> n = 3<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Then</b> Writeln('Хорошо')<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Else If</b> n = 3<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Then</b> Writeln('Удовлетворительно')<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Else If</b> n = 2<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Then</b> Writeln('Неудовлетворительно')<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Else</b> Writeln('Неверная оценка')<br>
+                    <b>End.</b>
+                </p>
+            </div>
+
+            <p>Пример 3. Решение рассмотренной в предыдущем примере задачи можно запрограммировать с помощью одного оператора выбора, имеющегося в языке Паскаль. Вот как будет выглядеть такая программа:</p>
+            <div class="snippet-code">
+                <p><b>Program</b> Marks_2;<br>
+                    <b>Var</b> n: Integer;<br>
+                    <b>Begin</b><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Writeln('Введите оценку: ');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Readln(n);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b>Case</b> n <b>Of</b><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5: Writeln('Отлично');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4: Writeln('Хорошо');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3: Writeln('Удовлетворительно');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2: Writeln('Неудовлетворительно');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Else</b> Writeln('Неверная оценка')<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;End;
+                </p>
+            </div>
+            <p>Оператор выбора имеет следующий формат:</p>
+            <div class="snippet-code">
+                <p><b>Case</b> <селектор> <b>Of</b><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<список констант 1>: <оператор 1>;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b>...</b><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<список констант N>: <оператор N>;<br>
+                    <b>Else</b> <оператор><br>
+                    <b>End</b>
+                </p>
+            </div>
+
+            <p>Здесь <селектор> &mdash; это выражение любого порядкового типа; <константа> &mdash; постоянная величина того же типа, что и селектор; <оператор> &mdash; любой простой или составной оператор.</p>
+            <p>Выполнение оператора выбора происходит так: вычисляется выражение&ndash;селектор; затем в списках констант ищется такое значение, которое совпадает с полученным значением селектора; далее исполняется оператор, помеченный данной константой. Если такой константы не найдено, то происходит переход к выполнению оператора, следующего после слова Else.</p>
+            <p>Пример 4. В этом примере демонстрируется использование списка констант в операторе выбора. Программа сообщает, сдал студент экзамен или не сдал. Если оценка одна из следующих: 3, 4, 5, то экзамен сдан; если 2, то не сдан.</p>
+            <div class="snippet-code">
+                <p><b>Case</b> n <b>Of</b><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;3, 4, 5: Writeln('Экзамен сдан');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;2: Writeln('Экзамен не сдан');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b>Else</b> writeln('Нет такой оценки');<br>
+                    <b>End</b>
+                </p>
+            </div>
+
+            <p>Так же как условный оператор, оператор выбора может использоваться в неполной форме, т. е. без ветви Else.</p>
+            <p>Если применить условный оператор, то эта программа запишется так:</p>
+
+            <div class="snippet-code">
+                <p><b>If</b> (n = 3) <b>or</b> (n = 4) <b>or</b> (n = 5)<br>
+                    <b>Then</b> Writeln('Экзамен сдан');<br>
+                    <b>Else If</b>  n=2<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b>Then</b> Writeln('Экзамен не сдан');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b>Else</b> Writeln('Нет такой оценки');
+                </p>
+            </div>
+
+            <p>В условии ветвления использовано сложное логическое содержащее операции логического сложения or (или).</p>
+        </div>
+        
+        <div class="navigation_panel">
+            <ul>
+                <li>
+                    <a href="./P1_aboutLanguage_PascalLanguage.html"><div class="npi">Паскаль &mdash; язык структуного программирования</div></a> <!-- 'npi' == 'navigation panel item'-->
+                </li>
+
+                <li>
+                    <a href="./P2_items_of_pascal_and_types_of_data.html"><div class="npi">Элементы языка Паскаль и типы данных</div></a>
+                </li>
+
+                <li>
+                    <a href="./P3_operations_functions_exceptions"><div class="npi">Операции, функции, выражения</div></a>
+                </li>
+
+                <li>
+                    <a href="./P4_assignment_operator_and_data_input&output.html"><div class="npi">Оператор присваивания, ввод и вывод данных</div></a>
+                </li>
+
+                <li>
+                    <a href="./P5_logical_values_operations_exceptions.html"><div class="npi">Логические величины, операции, выражения</div></a>
+                </li>
+
+                <li>
+                    <a href="./P6_branch_programming.html"><div class="npi">Программирование ветвлений</div></a>
+                </li>
+
+                <li>
+                    <a href="./"><div class="npi">Программирование циклов</div></a>
+                </li>
+
+                <li>
+                    <a href="./"><div class="npi">Вложенные и итерационные циклы</div</a>>
+                </li>
+
+                <li>
+                    <a href="./"><div class="npi">Вспомогательные алгоритмы и подпрограммы</div></a>
+                </li>
+
+                <li>
+                    <a href="./"><div class="npi">Массивы</div></a>
+                </li>
+
+                <li>
+                    <a href="./"><div class="npi">Организация ввода и вывода данных с использованием файлов</div></a>
+                </li>
+
+                <li>
+                    <a href="./"><div class="npi">Типовые задачи обработки массивов</div></a>
+                </li>
+
+                <li>
+                    <a href="./"><div class="npi">Символьный тип данных</div></a>
+                </li>
+
+                <li>
+                    <a href="./"><div class="npi">Строки символов</div></a>
+                </li>
+
+                <li>
+                    <a href="./"><div class="npi">Комбинированный тип</div></a>
+                </li> 
+            </ul>
+        </div>
+    </div>
+    <footer>
+        <div id="thanks">
+            <span>Текст курса взят из учебника по информатике за 10 класс, соответствующего ФГОС. Авторами учебника являются: И. Г. Семакин, Е. К. Хеннер, Т. Ю. Шеина.</span>
+        </div>
+        <div id="social">
+            
+        </div>
+        <div id="rights">
+            <p>Все права защищены &copy; 2022</p>
+        </div>
+    </footer>
+</body>
+</html>
